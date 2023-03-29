@@ -1,4 +1,4 @@
-package org.example;
+package org.firstAndSecond;
 
 import java.util.ArrayList;
 import java.util.Scanner;

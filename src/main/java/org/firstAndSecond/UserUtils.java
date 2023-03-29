@@ -1,4 +1,4 @@
-package org.example;
+package org.firstAndSecond;
 
 public class UserUtils {
     public final static int FIRSTCOMMAND = 1;
