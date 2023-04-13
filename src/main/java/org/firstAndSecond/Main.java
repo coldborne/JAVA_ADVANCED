@@ -1,5 +1,8 @@
 package org.firstAndSecond;
 
+import org.third.ArrayHandler;
+import org.third.Present;
+import org.third.PresentBuilder;
 import java.util.Scanner;
 
 /**
@@ -8,6 +11,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //First task
         System.out.println("Добро пожаловать в нашу программу!");
         System.out.println("Выберите нужную функцию:");
         System.out.println("1 - Калькулятор, 2 - Поиск максимального слова в массиве");
@@ -15,17 +21,24 @@ public class Main {
         Calculator calculator = new Calculator();
         WorkerWithArray workerWithArray = new WorkerWithArray();
 
-        Scanner scanner = new Scanner(System.in);
         int selectedCommand = scanner.nextInt();
 
-        switch (selectedCommand){
-            case UserUtils.FIRSTCOMMAND:
-                calculator.work(scanner);
-                break;
-            case UserUtils.SECONDCOMMAND:
-                workerWithArray.work(scanner);
-                break;
+        switch (selectedCommand) {
+            case UserUtils.FIRSTCOMMAND -> calculator.work(scanner);
+            case UserUtils.SECONDCOMMAND -> workerWithArray.work(scanner);
         }
+
+        //Third task, thirst part
+        ArrayHandler arrayHandler = new ArrayHandler();
+
+        arrayHandler.work();
+
+        //Third task, second part
+        PresentBuilder presentBuilder = new PresentBuilder();
+        Present present = presentBuilder.create();
+
+        System.out.println("Цена подарка: " + present.getPrice() + " рублей");
+        System.out.println("Вес подарка: " + present.getWeight() + " грамм");
 
         scanner.close();
     }
