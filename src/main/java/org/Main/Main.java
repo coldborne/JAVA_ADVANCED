@@ -1,5 +1,8 @@
-package org.firstAndSecond;
+package org.Main;
 
+import org.firstAndSecond.Calculator;
+import org.firstAndSecond.UserUtils;
+import org.firstAndSecond.WorkerWithArray;
 import org.third.ArrayHandler;
 import org.third.Present;
 import org.third.PresentBuilder;
