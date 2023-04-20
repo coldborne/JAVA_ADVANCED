@@ -14,30 +14,62 @@ public class ArrayHandler {
     public void work(){
         showArrayElements();
 
-        swapMaxAndMinElements();
+        swap(findMaxNegativeElementIndex(), findMinPositiveElementIndex());
 
         showArrayElements();
     }
 
-    private void swapMaxAndMinElements(){
-        int minValue = mRandomArray[0];
-        int maxValue = mRandomArray[0];
+    private int findMaxNegativeElementIndex(){
+        int maxNegativeValueIndex = 0;
+        int i = 0;
 
-        int minValueIndex = 0;
-        int maxValueIndex = 0;
+        if (mRandomArray[maxNegativeValueIndex] >= 0){
+            while (maxNegativeValueIndex == 0 && i < mRandomArray.length){
+                if (mRandomArray[i] < 0){
+                    maxNegativeValueIndex = i;
+                }
 
-        for (int i = 1; i < mRandomArray.length; i++) {
-            if (mRandomArray[i] > maxValue){
-                maxValue = mRandomArray[i];
-                maxValueIndex = i;
-            } else if (mRandomArray[i] < minValue) {
-                minValue = mRandomArray[i];
-                minValueIndex = i;
+                i++;
             }
         }
 
-        mRandomArray[minValueIndex] = maxValue;
-        mRandomArray[maxValueIndex] = minValue;
+        for (int j = maxNegativeValueIndex + 1; j < mRandomArray.length; j++){
+            if (mRandomArray[j] < 0 && mRandomArray[j] > mRandomArray[maxNegativeValueIndex]){
+                maxNegativeValueIndex = j;
+            }
+        }
+
+        return maxNegativeValueIndex;
+    }
+
+    private int findMinPositiveElementIndex(){
+        int minPositiveValueIndex = 0;
+        int i = 0;
+
+        if (mRandomArray[minPositiveValueIndex] < 0){
+            while (minPositiveValueIndex == 0 && i < mRandomArray.length){
+                if (mRandomArray[i] >= 0){
+                    minPositiveValueIndex = i;
+                }
+
+                i++;
+            }
+        }
+
+        for (int j = 1; j < mRandomArray.length; j++){
+            if (mRandomArray[j] >= 0 && mRandomArray[j] < mRandomArray[minPositiveValueIndex]){
+                minPositiveValueIndex = j;
+            }
+        }
+
+        return minPositiveValueIndex;
+    }
+
+    private void swap(int firstElementIndex, int secondElementIndex){
+            int tempValue = mRandomArray[firstElementIndex];
+
+            mRandomArray[firstElementIndex] = mRandomArray[secondElementIndex];
+            mRandomArray[secondElementIndex] = tempValue;
     }
 
     private void showArrayElements(){
