@@ -3,7 +3,7 @@ package org.third;
 import java.util.*;
 
 public class PresentBuilder{
-    private final List<SweetBuilderable> builders = new ArrayList<>();
+    private final Map<Integer,SweetBuilderable> builders = new HashMap<>();
 
     private final Random mRandom = new Random();
 
@@ -16,8 +16,8 @@ public class PresentBuilder{
     private final int JELLYBEANTYPE = 1;
 
     public PresentBuilder(){
-        builders.add(new CandyBuilder());
-        builders.add(new JellyBeanBuilder());
+        builders.put(CANDYTYPE,new CandyBuilder());
+        builders.put(JELLYBEANTYPE,new JellyBeanBuilder());
     }
 
     public Present create(){

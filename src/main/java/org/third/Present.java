@@ -15,24 +15,17 @@ public class Present {
     }
 
     public int getPrice(){
-        int presentPrice = 0;
-
-        for (Sweet sweet :
-                mSweets) {
-            presentPrice += sweet.getmPrice();
-        }
-
-        return presentPrice;
+        return mSweets.stream().mapToInt(Sweet::getmPrice).sum();
     }
 
     public int getWeight(){
-        int presentWeight = 0;
+        return mSweets.stream().mapToInt(Sweet::getmWeight).sum();
+    }
 
+    public void showInfo(){
         for (Sweet sweet :
                 mSweets) {
-            presentWeight += sweet.getmWeight();
+            sweet.showInfo();
         }
-
-        return presentWeight;
     }
 }

@@ -18,6 +18,12 @@ public abstract class Sweet {
     public int getmPrice(){
         return mPrice;
     }
+
+    public void showInfo(){
+        System.out.println("Тип конфеты: " + mName);
+        System.out.println("Цена: " + mPrice);
+        System.out.println("Веса: " + mWeight);
+    }
 }
 
 

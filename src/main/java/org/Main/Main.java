@@ -42,6 +42,8 @@ public class Main {
 
         System.out.println("Цена подарка: " + present.getPrice() + " рублей");
         System.out.println("Вес подарка: " + present.getWeight() + " грамм");
+        System.out.println("Информация о подарке:");
+        present.showInfo();
 
         scanner.close();
     }
