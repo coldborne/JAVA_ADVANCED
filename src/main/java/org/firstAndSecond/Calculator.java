@@ -5,12 +5,14 @@ import java.util.Scanner;
 /**
  * @author Coldborne
  * @see #work(Scanner)
- * @see #sum(double, double)
- * @see #multiply(double, double)
- * @see #divide(double, double)
- * @see #subtract(double, double)
+ * @see #sum()
+ * @see #multiply()
+ * @see #divide()
+ * @see #subtract()
  */
 public class Calculator {
+    private double mFirstNumber;
+    private double mSecondNumber;
 
     public void work(Scanner scanner){
         boolean isWork = true;
@@ -24,24 +26,24 @@ public class Calculator {
             int selectedCommand = scanner.nextInt();
 
             System.out.println("Введите первое число:");
-            double firstNumber = scanner.nextDouble();
+            mFirstNumber = getNumberFromUser(scanner);
             System.out.println("Введите второе число:");
-            double secondNumber = scanner.nextDouble();
+            mSecondNumber = getNumberFromUser(scanner);
 
             double result = 0;
 
             switch (selectedCommand){
                 case UserUtils.FIRSTCOMMAND:
-                    result = sum(firstNumber, secondNumber);
+                    result = sum();
                     break;
                 case UserUtils.SECONDCOMMAND:
-                    result = subtract(firstNumber, secondNumber);
+                    result = subtract();
                     break;
                 case UserUtils.THIRDCOMMAND:
-                    result = multiply(firstNumber, secondNumber);
+                    result = multiply();
                     break;
                 case UserUtils.FOURTHCOMMAND:
-                    result = divide(firstNumber, secondNumber);
+                    result = divide();
                     break;
             }
 
@@ -63,38 +65,54 @@ public class Calculator {
     }
 
     /**
-     * @param firstNumber  first numerator
-     * @param secondNumber second numerator
      * @return the sum of firstNumber and secondNumber
      */
-    private double sum(double firstNumber, double secondNumber){
-        return firstNumber + secondNumber;
+    private double sum(){
+        return mFirstNumber + mSecondNumber;
     }
 
     /**
-     * @param subtractiveNumber a minuend
-     * @param subtractedNumber a subtrahend
      * @return the number difference
      */
-    private double subtract(double subtractiveNumber, double subtractedNumber){
-        return subtractiveNumber - subtractedNumber;
+    private double subtract(){
+        return mFirstNumber - mSecondNumber;
     }
 
     /**
-     * @param firstNumber first multiplier
-     * @param secondNumber second multiplier
      * @return the multiplication of firstNumber and secondNumber
      */
-    private double multiply(double firstNumber, double secondNumber){
-        return firstNumber * secondNumber;
+    private double multiply(){
+        return mFirstNumber * mSecondNumber;
     }
 
     /**
-     * @param divisible a divisible
-     * @param divider a divider
      * @return the result of dividing numbers
      */
-    private double divide(double divisible, double divider){
-        return divisible / divider;
+    private double divide(){
+        if (mSecondNumber == 0) {
+            System.out.println("Ошибка. Деление на нуль");
+            return 0.0;
+        } else {
+            return mFirstNumber / mSecondNumber;
+        }
+    }
+
+    private double getNumberFromUser(Scanner scanner){
+        double number = 0.0;
+        boolean isDouble = false;
+
+        while (isDouble == false) {
+            System.out.println("Введите число типа double. В таком формате *,*, где * - это число. Либо в формате *, где * - это число");
+
+            if (scanner.hasNextDouble()) {
+                number = scanner.nextDouble();
+                break;
+            } else {
+                System.out.println("Вы ввели не число типа double");
+                scanner.next();
+            }
+        }
+
+        return number;
     }
 }
