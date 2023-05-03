@@ -2,9 +2,9 @@ package org.Main;
 
 import org.fifth.FileSearcher;
 import org.fifth.WordCounter;
-import org.firstAndSecond.Calculator;
 import org.firstAndSecond.UserUtils;
 import org.firstAndSecond.WorkerWithArray;
+import org.firstAndSecond.WorkerWithCalculator;
 import org.third.ArrayHandler;
 import org.third.Present;
 import org.third.PresentBuilder;
@@ -27,13 +27,13 @@ public class Main {
         System.out.println("Выберите нужную функцию:");
         System.out.println("1 - Калькулятор, 2 - Поиск максимального слова в массиве");
 
-        Calculator calculator = new Calculator();
+        WorkerWithCalculator worker = new WorkerWithCalculator();
         WorkerWithArray workerWithArray = new WorkerWithArray();
 
         int selectedCommand = scanner.nextInt();
 
         switch (selectedCommand) {
-            case UserUtils.FIRSTCOMMAND -> calculator.work(scanner);
+            case UserUtils.FIRSTCOMMAND -> worker.work(scanner);
             case UserUtils.SECONDCOMMAND -> workerWithArray.work(scanner);
         }
 
