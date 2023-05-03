@@ -1,11 +1,17 @@
 package org.Main;
 
+import org.fifth.FileSearcher;
+import org.fifth.WordCounter;
 import org.firstAndSecond.Calculator;
 import org.firstAndSecond.UserUtils;
 import org.firstAndSecond.WorkerWithArray;
 import org.third.ArrayHandler;
 import org.third.Present;
 import org.third.PresentBuilder;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,7 +19,7 @@ import java.util.Scanner;
  * @see #main(String[])
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
 
         //First task
@@ -46,5 +52,23 @@ public class Main {
         present.showInfo();
 
         scanner.close();
+
+        //The Fifth task
+        FileSearcher fileSearcher = new FileSearcher();
+        List<File> foundFiles = fileSearcher.searchFiles("words.txt");
+
+        /*Вообще, можно сделать цикл, при котором пользователю будет даваться ещё попытка забросить файл на рабочий
+        стол, либо он может завершить программу преждевременно, но я решил упростить, и здесь будет только один раз
+        подобная проверка*/
+        if (foundFiles.size() == 0){
+            System.out.println("Файл не найден");
+        } else if (foundFiles.size() > 1) {
+            System.out.println("Найден несколько файлов, нужно оставить только один");
+        } else {
+            File inputFile = foundFiles.get(0);
+
+            WordCounter app = new WordCounter(inputFile);
+            app.run();
+        }
     }
 }
