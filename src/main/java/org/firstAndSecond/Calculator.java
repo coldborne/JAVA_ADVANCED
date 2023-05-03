@@ -1,5 +1,8 @@
 package org.firstAndSecond;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * @author Coldborne
  * @see #sum()
@@ -36,14 +39,20 @@ public class Calculator {
      * @return the number difference
      */
     public double subtract(){
-        return mFirstNumber - mSecondNumber;
+        BigDecimal firstNumber = new BigDecimal(mFirstNumber);
+        BigDecimal secondNumber = new BigDecimal(mSecondNumber);
+
+        return firstNumber.subtract(secondNumber).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
      * @return the multiplication of firstNumber and secondNumber
      */
     public double multiply(){
-        return mFirstNumber * mSecondNumber;
+        BigDecimal firstNumber = BigDecimal.valueOf(mFirstNumber);
+        BigDecimal secondNumber = BigDecimal.valueOf(mSecondNumber);
+
+        return firstNumber.multiply(secondNumber).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
