@@ -11,11 +11,17 @@ public class Calculator {
     private double mFirstNumber;
     private double mSecondNumber;
 
-    public void setmFirstNumber(double number){
+    public void setmFirstNumber(double number) throws IllegalArgumentException {
+        if (Double.isNaN(number) || Double.isInfinite(number)) {
+            throw new IllegalArgumentException("Invalid number");
+        }
         mFirstNumber = number;
     }
 
-    public void setmSecondNumber(double number){
+    public void setmSecondNumber(double number) throws IllegalArgumentException {
+        if (Double.isNaN(number) || Double.isInfinite(number)) {
+            throw new IllegalArgumentException("Invalid number");
+        }
         mSecondNumber = number;
     }
 
@@ -43,10 +49,10 @@ public class Calculator {
     /**
      * @return the result of dividing numbers
      */
-    public double divide(){
+    public double divide() throws ArithmeticException {
         if (mSecondNumber == 0) {
             System.out.println("Ошибка. Деление на нуль");
-            return 0.0;
+            throw new ArithmeticException("Division by zero is not allowed");
         } else {
             return mFirstNumber / mSecondNumber;
         }
